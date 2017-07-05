@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Hello React</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="node_modules/normalize.css/normalize.css">
+    <link rel="stylesheet" href="css.css">
+</head>
+<body>
+<div id="app">
+    <!-- здесь будет отображено мое приложение -->
+</div>
+<script src="react/build/react.js"></script>
+<script src="react/build/react-dom.js"></script>
+<script>
+    var Component = React.createClass({
+       render: function () {
+           return React.DOM.span(null, "My Name Is " + this.props.name);
+       }
+    });
+    ReactDOM.render(
+            React.createElement(Component, {
+                name: "David",
+            }),
+            document.getElementById("app")
+    );
+</script>
+</body>
+</html>

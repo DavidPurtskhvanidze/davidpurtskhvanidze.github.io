@@ -1,0 +1,29 @@
+.container {
+  width: 960px;
+  margin: auto;
+}
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+  grid-gap: 10px;
+  .grid-item-1 {
+    grid-column-start: -1;
+    grid-column-end: -4;
+    grid-row-start: 1;
+    grid-row-end: 2;
+
+    border: 1px solid #333;
+    padding: 15px;
+    background: gray;
+    color: #fff;
+    text-align: center;
+  }
+  .grid-item {
+    border: 1px solid #333;
+    padding: 15px;
+    background: gray;
+    color: #fff;
+    text-align: center;
+  }
+}
