@@ -1,7 +1,281 @@
+a, abbr, acronym, address, applet, article, aside, audio, b, big, blockquote, body, canvas, caption, center, cite, code, dd, del, details, dfn, div, dl, dt, em, embed, fieldset, figcaption, figure, footer, form, h1, h2, h3, h4, h5, h6, header, hgroup, html, i, iframe, img, ins, kbd, label, legend, li, mark, menu, nav, object, ol, output, p, pre, q, ruby, s, samp, section, small, span, strike, strong, sub, summary, sup, table, tbody, td, tfoot, th, thead, time, tr, tt, u, ul, var, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline
+}
+
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+  display: block
+}
+
+body {
+  line-height: 1
+}
+
+ol, ul {
+  list-style: none
+}
+
+blockquote, q {
+  quotes: none
+}
+
+blockquote:after, blockquote:before, q:after, q:before {
+  content: '';
+  content: none
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0
+}
+
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,700');
+
+// --------------------------------------------------
+// Flexbox SASS mixins
+// The spec: http://www.w3.org/TR/css3-flexbox
+// --------------------------------------------------
+
+// Flexbox display
+@mixin flexbox() {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+}
+
+// The 'flex' shorthand
+// - applies to: flex items
+// <positive-number>, initial, auto, or none
+@mixin flex($values) {
+  -webkit-box-flex: $values;
+  -moz-box-flex: $values;
+  -webkit-flex: $values;
+  -ms-flex: $values;
+  flex: $values;
+}
+
+// Flex Flow Direction
+// - applies to: flex containers
+// row | row-reverse | column | column-reverse
+@mixin flex-direction($direction) {
+  -webkit-flex-direction: $direction;
+  -moz-flex-direction: $direction;
+  -ms-flex-direction: $direction;
+  flex-direction: $direction;
+}
+
+// Flex Line Wrapping
+// - applies to: flex containers
+// nowrap | wrap | wrap-reverse
+@mixin flex-wrap($wrap) {
+  -webkit-flex-wrap: $wrap;
+  -moz-flex-wrap: $wrap;
+  -ms-flex-wrap: $wrap;
+  flex-wrap: $wrap;
+}
+
+// Flex Direction and Wrap
+// - applies to: flex containers
+// <flex-direction> || <flex-wrap>
+@mixin flex-flow($flow) {
+  -webkit-flex-flow: $flow;
+  -moz-flex-flow: $flow;
+  -ms-flex-flow: $flow;
+  flex-flow: $flow;
+}
+
+// Display Order
+// - applies to: flex items
+// <integer>
+@mixin order($val) {
+  -webkit-box-ordinal-group: $val;
+  -moz-box-ordinal-group: $val;
+  -ms-flex-order: $val;
+  -webkit-order: $val;
+  order: $val;
+}
+
+// Flex grow factor
+// - applies to: flex items
+// <number>
+@mixin flex-grow($grow) {
+  -webkit-flex-grow: $grow;
+  -moz-flex-grow: $grow;
+  -ms-flex-grow: $grow;
+  flex-grow: $grow;
+}
+
+// Flex shrink
+// - applies to: flex item shrink factor
+// <number>
+@mixin flex-shrink($shrink) {
+  -webkit-flex-shrink: $shrink;
+  -moz-flex-shrink: $shrink;
+  -ms-flex-shrink: $shrink;
+  flex-shrink: $shrink;
+}
+
+// Flex basis
+// - the initial main size of the flex item
+// - applies to: flex itemsnitial main size of the flex item
+// <width>
+@mixin flex-basis($width) {
+  -webkit-flex-basis: $width;
+  -moz-flex-basis: $width;
+  -ms-flex-basis: $width;
+  flex-basis: $width;
+}
+
+// Axis Alignment
+// - applies to: flex containers
+// flex-start | flex-end | center | space-between | space-around
+@mixin justify-content($justify) {
+  -webkit-justify-content: $justify;
+  -moz-justify-content: $justify;
+  -ms-justify-content: $justify;
+  justify-content: $justify;
+  -ms-flex-pack: $justify;
+}
+
+// Packing Flex Lines
+// - applies to: multi-line flex containers
+// flex-start | flex-end | center | space-between | space-around | stretch
+@mixin align-content($align) {
+  -webkit-align-content: $align;
+  -moz-align-content: $align;
+  -ms-align-content: $align;
+  align-content: $align;
+}
+
+// Cross-axis Alignment
+// - applies to: flex containers
+// flex-start | flex-end | center | baseline | stretch
+@mixin align-items($align) {
+  -webkit-align-items: $align;
+  -moz-align-items: $align;
+  -ms-align-items: $align;
+  align-items: $align;
+}
+
+// Cross-axis Alignment
+// - applies to: flex items
+// auto | flex-start | flex-end | center | baseline | stretch
+@mixin align-self($align) {
+  -webkit-align-self: $align;
+  -moz-align-self: $align;
+  -ms-align-self: $align;
+  align-self: $align;
+}
+
+
+@mixin vendor-prefix($name, $argument) {
+  -webkit-#{$name}: #{$argument};
+  -ms-#{$name}: #{$argument};
+  -moz-#{$name}: #{$argument};
+  -o-#{$name}: #{$argument};
+  #{$name}: #{$argument};
+}
+
+$custom-dev-max: 320px;
+$extra-small-dev-max: 480px;
+$small-dev-max: 767px;
+$medium-dev-max: 992px;
+$large-dev-max: 1200px;
+
+$custom-dev-min: 320px;
+$extra-small-dev-min: 480px;
+$small-dev-min: 767px;
+$medium-dev-min: 992px;
+$large-dev-min: 1200px;
+//Example use
+//---------------
+//  @include bootstrap-respond-to(large-dev-min) {
+//    padding: 10px;
+//    img {
+//      width: 120px;
+//    }
+//  }
+//---------------
+@mixin bootstrap-respond-to($media) {
+  @if $media == custom-dev-max {
+    @media only screen and (max-width: $custom-dev-max) {
+      @content;
+    }
+  } @else if $media == custom-dev-min {
+    @media only screen and (min-width: $custom-dev-min) {
+      @content;
+    }
+  } @else if $media == extra-small-dev-max {
+    @media only screen and (max-width: $extra-small-dev-max) {
+      @content;
+    }
+  } @else if $media == extra-small-dev-min {
+    @media only screen and (min-width: $extra-small-dev-min) {
+      @content;
+    }
+  } @else if $media == small-dev-max {
+    @media only screen and (max-width: $small-dev-max) {
+      @content;
+    }
+  } @else if $media == small-dev-min {
+    @media only screen and (min-width: $small-dev-min) {
+      @content;
+    }
+  } @else if $media == medium-dev-max {
+    @media only screen and (max-width: $medium-dev-max) {
+      @content;
+    }
+  } @else if $media == medium-dev-min {
+    @media only screen and (min-width: $medium-dev-min) {
+      @content;
+    }
+  } @else if $media == large-dev-max {
+    @media only screen and (max-width: $large-dev-max) {
+      @content;
+    }
+  } @else if $media == large-dev-min {
+    @media only screen and (min-width: $large-dev-min) {
+      @content;
+    }
+  }
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+}
+
 .container {
   width: 960px;
   margin: auto;
 }
+header {
+  background: url("img/header-bg.png") center center;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 20px 0;
+}
+.my-face {
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+}
+.first-last-name {
+  color: #fff;
+  font-weight: 300;
+  h1 {
+    font-size: 30px;
+  }
+}
+
+
+
 .grid-container {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
